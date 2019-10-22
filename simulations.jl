@@ -9,7 +9,7 @@ using HDF5, JLD2, Dates, DynamicGrids, Dispersal, CSV
 
 
 # Load simualtions for USA
-datafile = "spread_inputs_US_SWD.h5"
+datafile = "spread_inputs_Au_SWD.h5"
 starttime = DateTime(2008, 5)
 timestep = Month(1) 
 stoptime = DateTime(2013, 12)
