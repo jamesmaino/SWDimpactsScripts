@@ -100,6 +100,6 @@ setup_rulesets(datafile, starttime, timestep, stoptime) = begin
     ruleset = Ruleset(Chain(localdisp, growth); kwargs...);
 
     ((full=full, nolocal=nolocal, noallee=noallee, nohuman=nohuman,
-      noclimate=noclimate), init, objective, output)
+      noclimate=noclimate), init)
 end
 
