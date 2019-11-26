@@ -37,11 +37,11 @@ setup_rulesets(datafile, starttime, timestep, stoptime) = begin
 
     # Load data
     data = h5open(datafile, "r")
-    dimz = Lat((20, 60), nothing, GeoData.Order(GeoData.Forward(), GeoData.Reverse())), Lon((-125, -75)) 
+    dimz = Lat((-43.62234, -10.65125), nothing, GeoData.Ordered(GeoData.Forward(), GeoData.Reverse())), Lon((113.34, 153.9523))
 
     init = GeoArray(floatconvert.(read(data["x_y_initial"]["brisbane"]) .* 1e9), dimz; missingval=NaN32) # Arbitrary initial condition
     monthsofyear = Time(DateTime(2008):Month(1):DateTime(2008)+Month(11))
-    popgrowth = GeoArray(replace(floatconvert.(read(data["x_y_month_intrinsicGrowthRate"])), NaN32=>0), (dimz..., monthsofyear); 
+    popgrowth = GeoArray(replace(floatconvert.(read(data["x_y_month_intrinsicGrowthRate"])), NaN32=>0), (dimz..., monthsofyear);
                          missingval=NaN32)
     human_pop = GeoArray(replace(floatconvert.(read(data["x_y_popdens"])), NaN=>missing), dimz; missingval=missing)
 
@@ -102,4 +102,3 @@ setup_rulesets(datafile, starttime, timestep, stoptime) = begin
     ((full=full, nolocal=nolocal, noallee=noallee, nohuman=nohuman,
       noclimate=noclimate), init)
 end
-
